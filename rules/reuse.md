@@ -6,7 +6,7 @@ Agents rarely look for existing code before they write new code. So a codebase s
 
 Search for what the code does, not for the name you would give it: `Intl.NumberFormat`, `currency`, `debounce`, `fetch(`. Look in the order of the [least mechanism](principles.md#simplicity):
 
-1. The project itself. Start with the shared modules listed in its `CLAUDE.md` and with the current feature folder.
+1. The project itself. Start with the shared modules listed in its `AGENTS.md` and with the current feature folder.
 2. The platform. It already has `structuredClone`, `Intl.DateTimeFormat`, `Intl.NumberFormat`, `URL`, `URLSearchParams`, `AbortController`, `Object.groupBy`, `Array.prototype.toSorted` and `crypto.randomUUID`.
 3. The dependencies in `package.json`.
 
