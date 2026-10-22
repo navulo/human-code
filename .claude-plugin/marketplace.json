@@ -1,0 +1,12 @@
+{
+  "name": "navulo",
+  "description": "Claude Code plugins from Navulo",
+  "owner": { "name": "Navulo", "url": "https://github.com/navulo" },
+  "plugins": [
+    {
+      "name": "human-code",
+      "source": "./",
+      "description": "Navulo's rules that make AI agents write code a person would write: no needless layers, comments or duplicate helpers."
+    }
+  ]
+}

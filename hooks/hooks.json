@@ -1,0 +1,15 @@
+{
+  "description": "Loads the human-code rules into every session",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf 'The human-code plugin loaded these rules. The files they link to are in %s/rules/.\\n\\n' \"${CLAUDE_PLUGIN_ROOT}\" && cat \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.md\""
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "human-code",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "lint": "node scripts/build.mjs --check"
+  }
+}
