@@ -1,6 +1,6 @@
 {
   "name": "human-code",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Navulo's rules that make AI agents write code a person would write: no needless layers, comments or duplicate helpers.",
   "author": { "name": "Navulo", "url": "https://github.com/navulo" },
   "homepage": "https://github.com/navulo/human-code",

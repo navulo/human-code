@@ -2,6 +2,16 @@
 
 All notable changes to the rules are listed here, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.0] - 2026-10-23
+
+### Changed
+
+- The rules are copied into each repository as a folder, `.agents/human-code/`, instead of one generated `AGENTS.md`. Links between the rule files work inside your repository, and agents load only `principles.md` and `ai-agents.md` up front. The README shows the install commands and the lines to add to `AGENTS.md` and `CLAUDE.md`.
+
+### Removed
+
+- The generated `AGENTS.md` with all the rules in one file. Its links to `repository.md` and `releases.md` pointed to GitHub, where agents do not follow them.
+
 ## [0.1.0] - 2026-10-22
 
 ### Added
