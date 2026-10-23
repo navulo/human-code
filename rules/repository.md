@@ -10,7 +10,9 @@ Every repository has these files:
 - [ ] `.editorconfig`.
 - [ ] `.env.example`, which lists every env variable the project reads, with a comment and a safe example value for each.
 - [ ] `CHANGELOG.md`, for anything that gets released or published. See [releases.md](releases.md).
-- [ ] `CLAUDE.md`, with short notes for AI agents: how to run and check the project, what is not obvious, and the shared modules with one line each (`src/lib/api.ts`: the only API client). It imports these rules instead of copying them.
+- [ ] `AGENTS.md`, with short notes for AI agents: how to run and check the project, what is not obvious, and the shared modules with one line each (`src/lib/api.ts`: the only API client). It ends with a Rules section that names `.agents/human-code/` and tells agents to read `principles.md` and `ai-agents.md` there first.
+- [ ] `CLAUDE.md`, which imports `AGENTS.md` and the two core rule files.
+- [ ] `.agents/human-code/`, a copy of these rules from a release. Do not edit it.
 
 ## Scripts
 

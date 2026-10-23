@@ -78,29 +78,39 @@ The first version breaks six rules:
 | [repository.md](rules/repository.md) | What every repository contains |
 | [releases.md](rules/releases.md) | Versions, changelog, releases |
 
-[AGENTS.md](AGENTS.md) contains the first nine files in one document, about 9,000 tokens.
-
 ## Use it
 
-### Any agent that reads AGENTS.md
+Copy the rules into your repository, then point your agents at them. The rule files link to each other, and the links work inside your repository. Agents load two files up front, about 2,000 tokens, and open the rest when a task needs them.
 
-Download [AGENTS.md](AGENTS.md) into the root of your repository. Codex, Cursor, GitHub Copilot and [other agents](https://agents.md) read it.
+1. Copy the `rules/` folder of a release into `.agents/human-code/`:
 
-```bash
-curl -fsSL -o AGENTS.md https://raw.githubusercontent.com/navulo/human-code/main/AGENTS.md
-```
+   ```bash
+   rm -rf .agents/human-code && mkdir -p .agents/human-code
+   curl -fsSL https://github.com/navulo/human-code/archive/refs/tags/v0.2.0.tar.gz \
+     | tar -xz -C .agents/human-code --strip-components=2 human-code-0.2.0/rules
+   ```
 
-If the project already has an `AGENTS.md`, append the rules to it instead:
+   To update, run the same commands with a newer version. Do not edit the copied files: change the rules in this repository instead.
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/navulo/human-code/main/AGENTS.md >> AGENTS.md
-```
+2. Add this section to your `AGENTS.md`. Codex, Cursor, GitHub Copilot and [other agents](https://agents.md) read that file.
 
-Claude Code reads `CLAUDE.md`, not `AGENTS.md`. Add the line `@AGENTS.md` to your `CLAUDE.md`, or use the plugin below.
+   ```markdown
+   ## Rules
+
+   This repository follows the [human-code](https://github.com/navulo/human-code) rules in `.agents/human-code/`. Before changing code, read `principles.md` and `ai-agents.md` there. They link to the other rule files.
+   ```
+
+3. Claude Code reads `CLAUDE.md`, not `AGENTS.md`. Put these lines in your `CLAUDE.md`, so that the two core files are always in context:
+
+   ```
+   @AGENTS.md
+   @.agents/human-code/principles.md
+   @.agents/human-code/ai-agents.md
+   ```
 
 ### Claude Code plugin
 
-The plugin loads the core rules into every Claude Code session, in any project, without copying files. These are the principles, the agent's working process and the list of traps, about 2,000 tokens. The other rule files ship with the plugin, and the agent opens them when a task touches their topic.
+If you use only Claude Code and do not want to copy files into each repository, install the plugin instead. It loads the same two core files into every session, in any project on your machine. The other rule files ship with the plugin. Do not combine the plugin with a copy in the repository: the rules would load twice.
 
 ```
 /plugin marketplace add navulo/human-code
@@ -111,7 +121,7 @@ The plugin loads the core rules into every Claude Code session, in any project, 
 
 Project conventions win over these rules: names, file layout, libraries and patterns. The quality rules apply to every new line. See [When the rules and the project disagree](rules/principles.md#when-the-rules-and-the-project-disagree).
 
-To change the rules for your team, fork the repository, edit the files in `rules/`, and run `npm run build` to rebuild `AGENTS.md`.
+To change the rules for your team, fork the repository and edit the files in `rules/`.
 
 ## Where the rules come from
 
@@ -127,7 +137,7 @@ To change the rules for your team, fork the repository, edit the files in `rules
 
 ## Contributing
 
-Edit the files in `rules/`, then run `npm run build` to rebuild `AGENTS.md`. Open a pull request as described in [git.md](rules/git.md). When you write a rule:
+Edit the files in `rules/`. If you change `principles.md` or `ai-agents.md`, run `npm run build` to rebuild the plugin context. Open a pull request as described in [git.md](rules/git.md). When you write a rule:
 
 - Keep it short and checkable. If removing a sentence changes nothing, remove it.
 - Describe a trap to avoid, not the layout of some code.
